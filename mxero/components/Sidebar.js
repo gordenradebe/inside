@@ -109,16 +109,14 @@ input{
 
 `
 
-
 const Container = styled.div` 
 
 flex:0.45;
 boarder-right: 1px solid whitesmoke;
 height:100vh;
-min-width:300px;
+min-width:295px;
 max-width:350px;
 overflow-y:scroll;
-
 
 ::-webkit-scrollbar{
     display: none;

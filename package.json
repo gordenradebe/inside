@@ -13,7 +13,7 @@
     "frontend": "npm run front --prefix client",
     "dev": "concurrently \"npm run backend\"  \"npm run start --prefix client\""
   },
-  "author": "Jaewon Ahn",
+  "author": "MG Radebe",
   "license": "ISC",
   "dependencies": {
     "@google-cloud/dialogflow": "^3.5.0",

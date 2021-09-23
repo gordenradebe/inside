@@ -18,26 +18,28 @@ const ContextProvider = ({ children }) => {
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
+ 
 
-  useEffect(() => {
+ useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
-      .then((currentStream) => {
-             setStream(currentStream);
-             myVideo.current.srcObject = currentStream;
+      .then(currentStream => {
+               setStream(currentStream);
+               myVideo.current.srcObject = currentStream;
       });
-
     socket.on('me', (id) => setMe(id));
-
     socket.on('callUser', ({ from, name: callerName, signal }) => {
       setCall({ isReceivingCall: true, from, name: callerName, signal });
     });
   }, []);
 
+
+
+
+  // answer call 
+
   const answerCall = () => {
     setCallAccepted(true);
-
     const peer = new Peer({ initiator: false, trickle: false, stream });
-
     peer.on('signal', (data) => {
       socket.emit('answerCall', { signal: data, to: call.from });
     });
@@ -47,35 +49,37 @@ const ContextProvider = ({ children }) => {
     });
 
     peer.signal(call.signal);
-
-    connectionRef.current = peer;
+      connectionRef.current = peer;
   };
-
+// i am not sure about this instance
   const callUser = (id) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
-
     peer.on('signal', (data) => {
       socket.emit('callUser', { userToCall: id, signalData: data, from: me, name });
     });
 
+
+    // socket to stream 
     peer.on('stream', (currentStream) => {
       userVideo.current.srcObject = currentStream;
     });
 
+  // SOCKET TO ACCEP CALL  return => callAccepted 
     socket.on('callAccepted', (signal) => {
       setCallAccepted(true);
-
       peer.signal(signal);
     });
-
-    connectionRef.current = peer;
+      connectionRef.current = peer;
   };
+  // DROP CALL   returns leaveCall
+
 
   const leaveCall = () => {
     setCallEnded(true);
-
     connectionRef.current.destroy();
-
+    connectionRef.current.pause();
+   // connectionRef.current.removeAttribute('src');
+  //  connectionRef.current.load();
     window.location.reload();
   };
 
@@ -94,9 +98,7 @@ const ContextProvider = ({ children }) => {
       leaveCall,
       answerCall,
     }}
-    >
-      {children}
-    </Context.Provider>
+    > {children} </Context.Provider>
   );
 };
 

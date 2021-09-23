@@ -18,6 +18,8 @@ app.use('/api/dialogflow', require('./Chatbot/routes/dialogflow'));
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
 
+  console.log('sartuday', process.env.NODE_ENV);
+
   // Set static folder
   app.use(express.static("mxero/build"));
 

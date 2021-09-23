@@ -128,6 +128,7 @@ function Chatbot() {
 
     const renderCards = (cards) => {
         return cards.map((card,i) => <Card key={i} cardInfo={card.structValue} />)
+       
     }
 
 
@@ -139,19 +140,20 @@ function Chatbot() {
         // template for normal text 
         if (message.content && message.content.text && message.content.text.text) {
             return <Message key={i} who={message.who} text={message.content.text.text} />
+
         } else if (message.content && message.content.payload.fields.card) {
 
             const AvatarSrc = message.who === 'bot' ? <SmileOutlined type="robot" /> : <SmileOutlined type="smile" />
-
             return <div>
+        
                 <List.Item style={{ padding: '1rem' }}>
                     <List.Item.Meta
                         avatar={<Avatar icon={AvatarSrc} />}
                         title={message.who}
-                        description={renderCards(message.content.payload.fields.card.listValue.values)}
-                    />
+                        description={renderCards(message.content.payload.fields.card.listValue.values)}/>
+                 
                 </List.Item>
-            </div>
+                </div>
         }
 
 
@@ -234,17 +236,10 @@ function Chatbot() {
                 right:'15px' 
 
 
-              }}
-                  
-              
-              
-              />     
+              }} />     
             <MicIcon/>
 
-              </div>
-           
-        
-         
+              </div> 
         </div>
     )
 }

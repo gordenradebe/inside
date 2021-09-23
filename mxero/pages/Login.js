@@ -4,30 +4,25 @@ import { Button} from '@material-ui/core';
 import { auth , provider } from "../firebase";
 
 function Login() {
-
   const signIn = () => {
-
     auth.signInWithPopup(provider).catch(alert)
   }
-
-
   return (
     <Container>
        <Head>
            <title>Login</title>
+            
        </Head>
 
       <LoginContainer>
           <Logo src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3OJW0KUrh-3T2TBQt94N960-yusz__8TjkA&usqp=CAU"/>
            <Button onClick ={signIn} variant="outlined">Sign with gmail</Button>
-          
+
+      
       </LoginContainer>
-
-
     </Container>
   )
 }
-
 export default Login
 
 const Container = styled.div`

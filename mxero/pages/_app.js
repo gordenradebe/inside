@@ -5,28 +5,25 @@ import Login from './Login';
 import Loading from '../components/Loading';
 import {useEffect, useReducer} from "react";
 import firebase from 'firebase';
-import { ContextProvider } from './Context';
-
-
-
+//import { ContextProvider } from './Context';
+import { CanvasProvider } from "./CanvasContext";
 import Reducer from '../_reducers';
 import ReactDOM from "react-dom";
-
 import "antd/dist/antd.css";
-
-
-
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import promiseMiddleware from 'redux-promise';
 import ReduxThunk from 'redux-thunk';
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router-dom";
+
 
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore);
 
 function MyApp({ Component, pageProps }) {
   const [user, loading] = useAuthState(auth)
+
+
 
   useEffect (()=>{
 
@@ -39,8 +36,7 @@ function MyApp({ Component, pageProps }) {
      },
      {merge: true}
      
-     );
-   }
+     ); }
 
   },[user])
 
@@ -56,18 +52,16 @@ function MyApp({ Component, pageProps }) {
             window.__REDUX_DEVTOOLS_EXTENSION__()
           )}>
 
-    <ContextProvider>
-     
-    <BrowserRouter>
-      <Component {...pageProps} />
-      </BrowserRouter>
-
-    
-    </ContextProvider>
-
+        <CanvasProvider>
+          <HashRouter>
+          <BrowserRouter>
+                     <Component {...pageProps} />
+                </BrowserRouter>
+          </HashRouter>
+         
+        </CanvasProvider>
+  
     </Provider>
-  )
-
-}
+  )}
 
 export default MyApp

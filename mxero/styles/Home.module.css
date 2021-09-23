@@ -2,6 +2,7 @@
 .main{
   display: flex;
   background : linear-gradient(to right, #57c1eb 0%, #246fa8 100%);
+  object-fit: cover;
   
 }
 
@@ -109,7 +110,7 @@ height:80px;
   height: 1em;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1600px) {
   .grid {
     width: 100%;
     flex-direction: column;
