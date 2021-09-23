@@ -8,10 +8,7 @@
     "npm": "6.9.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "backend": "nodemon index.js",
-    "frontend": "npm run front --prefix client",
-    "dev": "concurrently \"npm run backend\"  \"npm run start --prefix client\""
+    "start": "node index.js"
   },
   "author": "MG Radebe",
   "license": "ISC",
