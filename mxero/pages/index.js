@@ -44,6 +44,8 @@ import {GlobalStyle} from '../components/globalStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import Navbar from '../components/Navbarfooter/Navbar';
 //import { saveMessage } from '../_actions/message_actions';
+import Card from "../Components/Chatbot/Sections/Card";
+
 
 
 
@@ -289,6 +291,7 @@ export default function Home() {
       <main className={styles.main}>
      
      <Sidebar/> 
+     
 
      <BrowserRouter>
      <HashRouter>
