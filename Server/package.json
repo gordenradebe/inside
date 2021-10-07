@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "engines": {
+    "node": "10"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
@@ -12,7 +15,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "postinstall": "npm run build"
+    "dev": "nodemon index.js"
+
   },
   "author": "MG Radebe",
   "license": "ISC"
