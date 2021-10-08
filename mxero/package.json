@@ -2,7 +2,8 @@
   "name": "mxero",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://warm-wildwood-81069.herokuapp.com"
+  "proxy": "https://warm-wildwood-81069.herokuapp.com",
+  
 
   "scripts": {
     "dev": "next dev",
